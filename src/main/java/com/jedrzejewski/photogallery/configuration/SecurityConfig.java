@@ -1,5 +1,6 @@
 package com.jedrzejewski.photogallery.configuration;
 
+import com.jedrzejewski.photogallery.service.serviceImpl.SpringDataUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -13,7 +14,6 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Override
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
