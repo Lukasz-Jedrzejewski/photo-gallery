@@ -14,5 +14,6 @@ public class CommandLineRunner implements org.springframework.boot.CommandLineRu
     @Override
     public void run(String... args) throws Exception {
         init.initRoles();
+        init.initAdmin();
     }
 }

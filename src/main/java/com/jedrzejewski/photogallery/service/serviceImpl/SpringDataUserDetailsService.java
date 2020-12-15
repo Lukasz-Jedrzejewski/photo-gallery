@@ -4,6 +4,7 @@ import com.jedrzejewski.photogallery.entity.Role;
 import com.jedrzejewski.photogallery.entity.User;
 import com.jedrzejewski.photogallery.model.CurrentUser;
 import com.jedrzejewski.photogallery.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,6 +18,7 @@ public class SpringDataUserDetailsService implements UserDetailsService {
 
     private UserService userService;
 
+    @Autowired
     public void setUserRepository(UserService userService) {
         this.userService = userService;
     }
