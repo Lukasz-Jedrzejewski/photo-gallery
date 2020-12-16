@@ -25,6 +25,13 @@
 <div>
     <c:forEach items="${users}" var="user">
         ${user.email}
+    <a href="/admin/add-photos/${user.id}">Dodaj zjęcia</a>
+    <c:if test="${user.password == null}">
+        <p>Dodaj zdjęcia by wygenerować kod</p>
+    </c:if>
+    <c:if test="${user.password != null}">
+        <a href="/admin/generate-pass/${user.id}">Wygeneruj kod</a>
+    </c:if>
     </c:forEach>
 </div>
 
