@@ -4,6 +4,7 @@ import com.jedrzejewski.photogallery.entity.Gallery;
 import com.jedrzejewski.photogallery.entity.User;
 import com.jedrzejewski.photogallery.model.CurrentUser;
 import com.jedrzejewski.photogallery.model.Data;
+import com.jedrzejewski.photogallery.service.GalleryService;
 import com.jedrzejewski.photogallery.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -24,6 +25,7 @@ import java.util.List;
 public class AdminController {
 
     private final UserService userService;
+    private final GalleryService galleryService;
 
     @GetMapping("/panel")
     public String loadPanelAction(@AuthenticationPrincipal CurrentUser currentUser, Model model) {
@@ -43,6 +45,7 @@ public class AdminController {
             return "/admin/add-user-form";
         } else {
             userService.saveUser(data.getUserEmail());
+            galleryService.saveGallery(data.getGalleryName(), userService.findByEmail(data.getUserEmail()));
         }
         return "redirect:/admin/panel";
     }
