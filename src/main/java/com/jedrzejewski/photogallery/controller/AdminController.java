@@ -49,4 +49,9 @@ public class AdminController {
         }
         return "redirect:/admin/panel";
     }
+
+    @ModelAttribute("users")
+    public List<User> listOfUsers () {
+        return userService.findAllUsers();
+    }
 }

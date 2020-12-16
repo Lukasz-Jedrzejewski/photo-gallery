@@ -42,4 +42,10 @@ public class UserServiceImpl implements UserService {
         user.setRoles(new HashSet<>(Collections.singletonList(roleRepository.findByName("ROLE_USER"))));
         userRepository.save(user);
     }
+
+    @Override
+    public List<User> findAllUsers() {
+        Role role = roleRepository.findByName("ROLE_USER");
+        return userRepository.findAllByRoles(role);
+    }
 }

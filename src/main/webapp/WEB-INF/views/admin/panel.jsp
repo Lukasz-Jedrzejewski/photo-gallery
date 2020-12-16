@@ -19,14 +19,14 @@
     </form>
 </sec:authorize>
 
-    <div id="nav">
-        <ul>
-            <li><a href="/admin/has-a-gallery">Użytkownicy posiadający galerię</a> </li>
-            <li><a href="/admin/does-not-have-a-gallery">Użytkownicy nie posiadający galerii</a></li>
-        </ul>
-    </div>
-
 <a href="/admin/add-user">Dodaj używtkownika</a>
+
+<h3>Lista Użytkowników</h3>
+<div>
+    <c:forEach items="${users}" var="user">
+        ${user.email}
+    </c:forEach>
+</div>
 
 </body>
 </html>
