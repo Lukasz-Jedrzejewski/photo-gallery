@@ -2,16 +2,10 @@ package com.jedrzejewski.photogallery.fixture;
 
 import com.jedrzejewski.photogallery.entity.Role;
 import com.jedrzejewski.photogallery.entity.User;
-import com.jedrzejewski.photogallery.repository.RoleRepository;
 import com.jedrzejewski.photogallery.service.RoleService;
 import com.jedrzejewski.photogallery.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
 
 @Service
 @AllArgsConstructor

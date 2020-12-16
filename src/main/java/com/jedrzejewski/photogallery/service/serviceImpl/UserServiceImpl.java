@@ -7,8 +7,6 @@ import com.jedrzejewski.photogallery.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 
