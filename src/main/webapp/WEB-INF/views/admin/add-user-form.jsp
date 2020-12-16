@@ -7,13 +7,18 @@
 </head>
 <body>
 
-<form:form modelAttribute="user" method="post" action="/admin/add-user">
-    <form:hidden path="id"/>
+<form:form modelAttribute="data" method="post" action="/admin/add-user">
     <div>
         <label>
-            email <form:input path="email"/>
+            email <form:input path="userEmail"/>
         </label>
-        <form:errors path="email"/>
+        <form:errors path="userEmail"/>
+    </div>
+    <div>
+        <label>
+            Nazwa galerii <form:input path="galleryName"/>
+        </label>
+        <form:errors path="galleryName"/>
     </div>
     <input type="submit" value="Zatwierdź"/>
 </form:form>

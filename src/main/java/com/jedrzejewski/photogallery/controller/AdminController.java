@@ -1,7 +1,9 @@
 package com.jedrzejewski.photogallery.controller;
 
+import com.jedrzejewski.photogallery.entity.Gallery;
 import com.jedrzejewski.photogallery.entity.User;
 import com.jedrzejewski.photogallery.model.CurrentUser;
+import com.jedrzejewski.photogallery.model.Data;
 import com.jedrzejewski.photogallery.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -31,16 +33,16 @@ public class AdminController {
 
     @GetMapping("/add-user")
     public String addUserGetAction(Model model) {
-        model.addAttribute("user", new User());
+        model.addAttribute("data", new Data());
         return "/admin/add-user-form";
     }
 
     @PostMapping("/add-user")
-    public String addUserPostAction(@Valid @ModelAttribute User user, BindingResult bindingResult) {
+    public String addUserPostAction(@Valid @ModelAttribute Data data, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "/admin/add-user-form";
         } else {
-            userService.saveUser(user);
+            userService.saveUser(data.getUserEmail());
         }
         return "redirect:/admin/panel";
     }
