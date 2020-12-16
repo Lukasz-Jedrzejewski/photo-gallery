@@ -6,23 +6,19 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "galleries")
-public class Gallery {
+@Table(name = "images")
+public class Image {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+    private String path;
     @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "gallery")
-    private Set<Image> images = new HashSet<>();
+    @JoinColumn(name = "gallery_id")
+    private Gallery gallery;
 }
