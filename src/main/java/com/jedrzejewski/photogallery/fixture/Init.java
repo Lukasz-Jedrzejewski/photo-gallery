@@ -23,6 +23,7 @@ public class Init {
 
     public void initAdmin() {
         User admin = new User();
+        admin.setId(1L);
         admin.setEmail("admin@mail.com");
         admin.setPassword("aaaAAA12@");
         userService.saveAdmin(admin);
