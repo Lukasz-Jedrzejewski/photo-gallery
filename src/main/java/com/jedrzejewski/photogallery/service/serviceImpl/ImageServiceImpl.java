@@ -1,5 +1,6 @@
 package com.jedrzejewski.photogallery.service.serviceImpl;
 
+import com.jedrzejewski.photogallery.entity.Gallery;
 import com.jedrzejewski.photogallery.entity.Image;
 import com.jedrzejewski.photogallery.repository.ImageRepository;
 import com.jedrzejewski.photogallery.service.ImageService;
@@ -13,7 +14,7 @@ public class ImageServiceImpl implements ImageService {
     private final ImageRepository imageRepository;
 
     @Override
-    public void saveImage(Image image) {
+    public void saveImage(Image image, Gallery gallery) {
         imageRepository.save(image);
     }
 }

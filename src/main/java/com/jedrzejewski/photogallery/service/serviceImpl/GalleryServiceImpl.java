@@ -20,4 +20,9 @@ public class GalleryServiceImpl implements GalleryService {
         gallery.setUser(user);
         galleryRepository.save(gallery);
     }
+
+    @Override
+    public Gallery findByUserId(long id) {
+        return galleryRepository.findByUserId(id);
+    }
 }
