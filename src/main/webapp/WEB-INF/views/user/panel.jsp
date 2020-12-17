@@ -19,7 +19,13 @@
     </form>
 </sec:authorize>
 
-Działa
+<div>
+    <c:forEach items="${images}" var="image">
+        <div>
+            <img src="<c:url value="/resources/images/${image.path}" />" alt="image" />
+        </div>
+    </c:forEach>
+</div>
 
 </body>
 </html>
