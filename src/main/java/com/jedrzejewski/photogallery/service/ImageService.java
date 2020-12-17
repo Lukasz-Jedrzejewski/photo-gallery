@@ -8,6 +8,6 @@ import java.io.IOException;
 import java.util.List;
 
 public interface ImageService {
-    void saveImage(MultipartFile file, String email, Gallery gallery) throws IOException;
+    void saveImage(MultipartFile[] file, String email, Gallery gallery) throws IOException;
     List<Image> findAllByGalleryId(Long id);
 }

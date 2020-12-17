@@ -14,6 +14,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class ImageServiceImpl implements ImageService {
@@ -28,23 +29,33 @@ public class ImageServiceImpl implements ImageService {
     }
 
     @Override
-    public void saveImage(MultipartFile file, String email, Gallery gallery) throws IOException {
+    public void saveImage(MultipartFile[] files, String email, Gallery gallery) throws IOException {
         Path path = null;
-        try {
-            path = Paths.get(finalPath+email+ File.separator+gallery.getName() );
-            System.out.println(path.toAbsolutePath());
-            if (!Files.exists(path)) {
-                Files.createDirectories(path);
+        /**
+         * the list below should be much longer
+         */
+        for (MultipartFile file : files) {
+            if (Objects.equals(file.getContentType(), "image/jpg")
+                    || Objects.equals(file.getContentType(), "image/jpeg")
+                    || Objects.equals(file.getContentType(), "image/tiff")
+                    || Objects.equals(file.getContentType(), "image/bmp")
+                    || Objects.equals(file.getContentType(), "image/png")) {
+                try {
+                    path = Paths.get(finalPath + email + File.separator + gallery.getName());
+                    if (!Files.exists(path)) {
+                        Files.createDirectories(path);
+                    }
+                    Files.write(Paths.get(path + File.separator + file.getOriginalFilename()), file.getBytes());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                Path DbPath = Paths.get(email + File.separator + gallery.getName() + File.separator + file.getOriginalFilename());
+                Image image = new Image();
+                image.setGallery(gallery);
+                image.setPath(DbPath.toString());
+                imageRepository.save(image);
             }
-            Files.write(Paths.get(path + File.separator + file.getOriginalFilename()), file.getBytes());
-        } catch (IOException e) {
-            e.printStackTrace();
         }
-        Path DbPath = Paths.get(email+ File.separator+gallery.getName() + File.separator + file.getOriginalFilename());
-        Image image = new Image();
-        image.setGallery(gallery);
-        image.setPath(DbPath.toString());
-        imageRepository.save(image);
     }
 
     @Override

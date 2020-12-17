@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
@@ -62,9 +63,7 @@ public class AdminController {
     public String addImagesPostAction(@AuthenticationPrincipal CurrentUser currentUser,
                                       @RequestParam MultipartFile[] files, @ModelAttribute Gallery gallery) throws IOException {
         String email = gallery.getUser().getEmail();
-        for (MultipartFile file : files) {
-            imageService.saveImage(file, email, gallery);
-        }
+        imageService.saveImage(files, email, gallery);
         return "redirect:/admin/panel";
     }
 
@@ -95,7 +94,7 @@ public class AdminController {
     }
 
     @ModelAttribute("users")
-    public List<User> listOfUsers () {
+    public List<User> listOfUsers() {
         return userService.findAllUsers();
     }
 }
