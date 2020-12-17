@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>login</title>
+    <title>User-details</title>
 </head>
 <body>
 
@@ -19,25 +19,13 @@
     </form>
 </sec:authorize>
 
-<a href="/admin/add-user">Dodaj używtkownika</a>
-
-<h3>Lista Użytkowników</h3>
 <div>
-
-<table>
-    <tr>
-        <th>Użytkownik</th>
-        <th>Akcje</th>
-    </tr>
-    <c:forEach items="${users}" var="user">
-        <tr>
-            <td>${user.email}</td>
-            <td>
-                <a href="/admin/user-details/${user.id}">szczegóły</a>
-            </td>
-        </tr>
-    </c:forEach>
-</table>
+    <div>Użytkownik</div>
+    <div>${currentUser.email}</div>
+    <div>Akcje</div>
+    <div><a href="/admin/show-photos/${currentUser.id}">Pokaż zjęcia</a></div>
+    <div><a href="/admin/add-photos/${currentUser.id}">Dodaj zjęcia</a></div>
+    <div><a href="/admin/generate-pass/${currentUser.id}">Wygeneruj kod</a></div>
 </div>
 
 </body>

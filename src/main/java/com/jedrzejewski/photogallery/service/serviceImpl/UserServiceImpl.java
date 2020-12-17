@@ -48,4 +48,9 @@ public class UserServiceImpl implements UserService {
         Role role = roleRepository.findByName("ROLE_USER");
         return userRepository.findAllByRoles(role);
     }
+
+    @Override
+    public User findUserById(long id) {
+        return userRepository.getOne(id);
+    }
 }

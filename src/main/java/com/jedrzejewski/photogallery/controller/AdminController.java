@@ -1,6 +1,7 @@
 package com.jedrzejewski.photogallery.controller;
 
 import com.jedrzejewski.photogallery.entity.Gallery;
+import com.jedrzejewski.photogallery.entity.Image;
 import com.jedrzejewski.photogallery.entity.User;
 import com.jedrzejewski.photogallery.model.CurrentUser;
 import com.jedrzejewski.photogallery.model.Data;
@@ -70,6 +71,14 @@ public class AdminController {
             imageService.saveImage(file, email, gallery);
         }
         return "redirect:/admin/panel";
+    }
+
+    @GetMapping("/user-details/{id}")
+    public String userDetailsAction(@AuthenticationPrincipal CurrentUser currentUser,
+                                    @PathVariable long id, Model model) {
+        model.addAttribute("currentUser", userService.findUserById(id));
+        model.addAttribute("user", currentUser.getUser());
+        return "/admin/user-details";
     }
 
     @ModelAttribute("users")

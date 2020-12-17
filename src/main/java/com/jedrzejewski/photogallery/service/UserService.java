@@ -9,4 +9,5 @@ public interface UserService {
     void saveAdmin(User user);
     void saveUser(String email);
     List<User> findAllUsers();
+    User findUserById(long id);
 }
