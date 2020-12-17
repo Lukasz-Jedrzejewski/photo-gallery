@@ -76,9 +76,18 @@ public class AdminController {
     @GetMapping("/user-details/{id}")
     public String userDetailsAction(@AuthenticationPrincipal CurrentUser currentUser,
                                     @PathVariable long id, Model model) {
+        Gallery currentGallery = galleryService.findByUserId(id);
         model.addAttribute("currentUser", userService.findUserById(id));
+        model.addAttribute("imagesSize", imageService.findAllByGalleryId(currentGallery.getId()).size());
         model.addAttribute("user", currentUser.getUser());
         return "/admin/user-details";
+    }
+
+    @GetMapping("/show-photos/{id}")
+    public String showImagesInAdminPanelAction(@PathVariable long id, Model model) {
+        Gallery currentGallery = galleryService.findByUserId(id);
+        model.addAttribute("images", imageService.findAllByGalleryId(currentGallery.getId()));
+        return "/admin/images";
     }
 
     @ModelAttribute("users")

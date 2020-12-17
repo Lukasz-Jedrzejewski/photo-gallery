@@ -40,10 +40,15 @@ public class ImageServiceImpl implements ImageService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Path finalPath = Paths.get(path + File.separator + file.getOriginalFilename());
+        Path DbPath = Paths.get(email+ File.separator+gallery.getName() + File.separator + file.getOriginalFilename());
         Image image = new Image();
         image.setGallery(gallery);
-        image.setPath(finalPath.toString());
+        image.setPath(DbPath.toString());
         imageRepository.save(image);
+    }
+
+    @Override
+    public List<Image> findAllByGalleryId(Long id) {
+        return imageRepository.findAllByGalleryId(id);
     }
 }

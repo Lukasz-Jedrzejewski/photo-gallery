@@ -9,4 +9,5 @@ import java.util.List;
 
 public interface ImageService {
     void saveImage(MultipartFile file, String email, Gallery gallery) throws IOException;
+    List<Image> findAllByGalleryId(Long id);
 }
