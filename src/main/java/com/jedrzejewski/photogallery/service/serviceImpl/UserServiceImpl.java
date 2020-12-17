@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Service
 @AllArgsConstructor
@@ -52,5 +51,25 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findUserById(long id) {
         return userRepository.getOne(id);
+    }
+
+    @Override
+    public String generatePassword() {
+        String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                + "0123456789"
+                + "abcdefghijklmnopqrstuvxyz";
+        StringBuilder sb = new StringBuilder(8);
+        for (int i = 0; i < 8; i++) {
+            int index = (int)(AlphaNumericString.length() * Math.random());
+            sb.append(AlphaNumericString.charAt(index));
+        }
+        return sb.toString();
+    }
+
+    @Override
+    public void editPassword(long id, String password) {
+        User userFromDb = findUserById(id);
+        userFromDb.setPassword(passwordEncoder.encode(password));
+        userRepository.save(userFromDb);
     }
 }

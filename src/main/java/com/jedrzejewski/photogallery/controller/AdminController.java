@@ -1,7 +1,6 @@
 package com.jedrzejewski.photogallery.controller;
 
 import com.jedrzejewski.photogallery.entity.Gallery;
-import com.jedrzejewski.photogallery.entity.Image;
 import com.jedrzejewski.photogallery.entity.User;
 import com.jedrzejewski.photogallery.model.CurrentUser;
 import com.jedrzejewski.photogallery.model.Data;
@@ -15,11 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 import java.io.IOException;
 import java.util.List;
 
@@ -88,6 +83,15 @@ public class AdminController {
         Gallery currentGallery = galleryService.findByUserId(id);
         model.addAttribute("images", imageService.findAllByGalleryId(currentGallery.getId()));
         return "/admin/images";
+    }
+
+    @GetMapping("/generate-pass/{id}")
+    public String generatePasswordForUserAction(@PathVariable long id) {
+        User user = userService.findUserById(id);
+        String password = userService.generatePassword();
+        System.out.println(password);
+        userService.editPassword(id, password);
+        return "redirect:/admin/panel";
     }
 
     @ModelAttribute("users")
