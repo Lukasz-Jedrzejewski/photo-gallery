@@ -18,4 +18,6 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query(value = "select * from users join galleries on galleries.user_id = users.id order by galleries.created DESC",
             nativeQuery = true)
     List<User> findAllUsersSortedByGalleryCreated();
+
+    boolean existsUserByEmail(String email);
 }

@@ -1,5 +1,6 @@
 package com.jedrzejewski.photogallery.entity;
 
+import com.jedrzejewski.photogallery.validation.UniqueEmailConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,6 +26,7 @@ public class User {
     @Column(nullable = false, unique = true)
     @Email
     @NotBlank
+    @UniqueEmailConstraint
     private String email;
     private boolean enabled;
     private String password;
