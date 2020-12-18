@@ -14,7 +14,7 @@ An application designed to be a tool for the photographer to share galleries wit
 
 # To run application:
 - clone
-- fill in the lines below with your own values
+- In application.properties file, fill in the lines below with your own values
     * spring.datasource.username=
     * spring.datasource.password=
     
