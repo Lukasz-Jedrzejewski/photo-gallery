@@ -12,4 +12,5 @@ public interface UserService {
     User findUserById(long id);
     String generatePassword();
     void editPassword(long id, String password);
+    List<User> findSorted();
 }

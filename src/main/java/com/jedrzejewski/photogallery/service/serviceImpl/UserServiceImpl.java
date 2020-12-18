@@ -72,4 +72,9 @@ public class UserServiceImpl implements UserService {
         userFromDb.setPassword(passwordEncoder.encode(password));
         userRepository.save(userFromDb);
     }
+
+    @Override
+    public List<User> findSorted() {
+        return userRepository.findAllUsersSortedByGalleryCreated();
+    }
 }

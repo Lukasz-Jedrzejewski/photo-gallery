@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,4 +26,10 @@ public class Gallery {
     private User user;
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "gallery")
     private Set<Image> images = new HashSet<>();
+    private LocalDateTime created;
+
+    @PrePersist
+    public void prePersist() {
+        created = LocalDateTime.now();
+    }
 }

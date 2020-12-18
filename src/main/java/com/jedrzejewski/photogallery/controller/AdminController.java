@@ -95,6 +95,6 @@ public class AdminController {
 
     @ModelAttribute("users")
     public List<User> listOfUsers() {
-        return userService.findAllUsers();
+        return userService.findSorted();
     }
 }
