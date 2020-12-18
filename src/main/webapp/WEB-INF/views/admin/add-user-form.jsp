@@ -8,6 +8,8 @@
 
 <%@include file="../authentication.jsp" %>
 
+<a href="/admin/panel">panel</a>
+
 <form:form modelAttribute="data" method="post" action="/admin/add-user">
     <div>
         <label>

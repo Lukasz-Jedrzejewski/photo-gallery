@@ -10,4 +10,9 @@ public class HomeController {
     public String loginAction() {
         return "login";
     }
+
+    @GetMapping("/403")
+    public String accessDeniedAction() {
+        return "403";
+    }
 }

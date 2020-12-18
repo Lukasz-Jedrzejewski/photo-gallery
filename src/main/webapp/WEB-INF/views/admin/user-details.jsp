@@ -8,6 +8,8 @@
 
 <%@include file="../authentication.jsp" %>
 
+<a href="/admin/panel">panel</a>
+
 <div>
     <div>Użytkownik</div>
     <div>${currentUser.email}</div>

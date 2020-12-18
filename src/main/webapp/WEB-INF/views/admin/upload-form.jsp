@@ -8,6 +8,8 @@
 
 <%@include file="../authentication.jsp" %>
 
+<a href="/admin/panel">panel</a>
+
 <h3>Dodaj zdjęcia</h3>
 <h5>Dopuszczalne rozszerzenia: .jpg .tiff .bmp .png</h5>
 <h5>Pliki z innym rozszerzeniem nie zostaną zapisane</h5>

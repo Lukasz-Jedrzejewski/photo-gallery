@@ -8,10 +8,13 @@
 
 <%@include file="../authentication.jsp" %>
 
-<div>
+<a href="/admin/panel">panel</a>
+
+<div style="margin: 5px;">
     <c:forEach items="${images}" var="image">
-        <div>
-            <img src="<c:url value="/resources/images/${image.path}" />" alt="image" />
+        <div style="padding: 5px">
+            <img style="display: block; margin-left: auto; margin-right: auto; width: 500px"src="<c:url value="/resources/images/${image.path}" />" alt="image" />
+            <div>
         </div>
     </c:forEach>
 </div>
