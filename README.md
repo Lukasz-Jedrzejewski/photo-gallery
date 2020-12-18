@@ -18,7 +18,7 @@ An application designed to be a tool for the photographer to share galleries wit
     * spring.datasource.username=
     * spring.datasource.password=
     
-    #####! the data below are administrator login data !
+    ! the data below are administrator login data !
     * spring.mail.username=
     * spring.mail.password=
 - create database `photo_gallery` in MySql Workbench or in other tool
