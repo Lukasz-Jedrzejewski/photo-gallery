@@ -6,6 +6,7 @@ import com.jedrzejewski.photogallery.model.CurrentUser;
 import com.jedrzejewski.photogallery.model.Data;
 import com.jedrzejewski.photogallery.service.GalleryService;
 import com.jedrzejewski.photogallery.service.ImageService;
+import com.jedrzejewski.photogallery.service.MailService;
 import com.jedrzejewski.photogallery.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -15,6 +16,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.mail.MessagingException;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.List;
@@ -27,6 +29,7 @@ public class AdminController {
     private final UserService userService;
     private final GalleryService galleryService;
     private final ImageService imageService;
+    private final MailService mailService;
 
     @GetMapping("/panel")
     public String loadPanelAction(@AuthenticationPrincipal CurrentUser currentUser, Model model) {
@@ -85,11 +88,13 @@ public class AdminController {
     }
 
     @GetMapping("/generate-pass/{id}")
-    public String generatePasswordForUserAction(@PathVariable long id) {
+    public String generatePasswordForUserAction(@PathVariable long id) throws MessagingException {
         User user = userService.findUserById(id);
         String password = userService.generatePassword();
-        System.out.println(password);
         userService.editPassword(id, password);
+        mailService.sendGeneratedPassword(user.getEmail(), "Hasło do Twojej galerii",
+                "<h3>Twoje hasło:</h3><h2> " + password +
+                        " </h2><h5>Aby obejrzeć swoją galerię przy logowaniu podaj swój adres email oraz powyższe hasło</h5>");
         return "redirect:/admin/panel";
     }
 

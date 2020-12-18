@@ -1,17 +1,17 @@
 package com.jedrzejewski.photogallery.validation;
 
 import com.jedrzejewski.photogallery.repository.UserRepository;
-import org.springframework.stereotype.Component;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 public class UniqueEmailValidator implements ConstraintValidator<UniqueEmailConstraint, String> {
 
+    @Autowired
     private UserRepository userRepository;
 
-    public UniqueEmailValidator(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public UniqueEmailValidator() {
     }
 
     @Override

@@ -26,7 +26,6 @@ public class User {
     @Column(nullable = false, unique = true)
     @Email
     @NotBlank
-    @UniqueEmailConstraint
     private String email;
     private boolean enabled;
     private String password;
