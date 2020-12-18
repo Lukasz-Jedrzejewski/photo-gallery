@@ -40,6 +40,7 @@ public class AdminController {
     @GetMapping("/add-user")
     public String addUserGetAction(@AuthenticationPrincipal CurrentUser currentUser, Model model) {
         model.addAttribute("data", new Data());
+        model.addAttribute("user", currentUser.getUser());
         return "/admin/add-user-form";
     }
 
@@ -59,6 +60,7 @@ public class AdminController {
     public String addImagesGetAction(@AuthenticationPrincipal CurrentUser currentUser,
                                      @PathVariable long id, Model model) {
         model.addAttribute("gallery", galleryService.findByUserId(id));
+        model.addAttribute("user", currentUser.getUser());
         return "/admin/upload-form";
     }
 
@@ -81,7 +83,9 @@ public class AdminController {
     }
 
     @GetMapping("/show-photos/{id}")
-    public String showImagesInAdminPanelAction(@PathVariable long id, Model model) {
+    public String showImagesInAdminPanelAction(@AuthenticationPrincipal CurrentUser currentUser,
+                                               @PathVariable long id, Model model) {
+        model.addAttribute("user", currentUser.getUser());
         Gallery currentGallery = galleryService.findByUserId(id);
         model.addAttribute("images", imageService.findAllByGalleryId(currentGallery.getId()));
         return "/admin/images";

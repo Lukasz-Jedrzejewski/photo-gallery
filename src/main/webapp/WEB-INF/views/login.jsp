@@ -6,15 +6,17 @@
     <title>login</title>
 </head>
 <body>
-
-<form action="/login" method="post">
-
-    <input type="email" name="username" placeholder="Email" />
-    <input type="password" name="password" placeholder="Hasło" />
-    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-    <button class="btn" type="submit">Zaloguj się</button>
-
-</form>
-
+<div>
+    <form action="/login" method="post">
+        <div>
+            <input type="email" name="username" placeholder="Email" />
+        <div>
+        <div>
+            <input type="password" name="password" placeholder="Hasło" />
+        <div>
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+            <button class="btn" type="submit">Zaloguj się</button>
+    </form>
+</div>
 </body>
 </html>

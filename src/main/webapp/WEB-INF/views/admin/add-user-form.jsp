@@ -1,11 +1,12 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>Add-user-form</title>
 </head>
 <body>
+
+<%@include file="../authentication.jsp" %>
 
 <form:form modelAttribute="data" method="post" action="/admin/add-user">
     <div>
