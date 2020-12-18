@@ -8,6 +8,7 @@ import org.junit.jupiter.api.*;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -15,6 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = PhotoGalleryApplication.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@ActiveProfiles("test")
 class RoleServiceImplTest {
 
     @Autowired
@@ -30,8 +32,8 @@ class RoleServiceImplTest {
     void saveRole() {
         assertAll(
                 () -> {
-                    assertFalse(roleRepository.findAll().isEmpty(), "Nothing should be saved");
-                    assertEquals(2, roleRepository.findAll().size(), "admin and user roles should be saved");
+                    assertTrue(roleRepository.findAll().isEmpty(), "Nothing should be saved");
+                    assertEquals(0, roleRepository.findAll().size(), "Nothing should be saved");
                 },
                 () -> {
                     roleService.saveRole(role);
@@ -40,6 +42,7 @@ class RoleServiceImplTest {
                             "ROLE_TEST should be found");
                 }
         );
+        roleRepository.delete(role);
     }
 
     @Test

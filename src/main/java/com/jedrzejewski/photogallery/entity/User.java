@@ -1,6 +1,5 @@
 package com.jedrzejewski.photogallery.entity;
 
-import com.jedrzejewski.photogallery.validation.UniqueEmailConstraint;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

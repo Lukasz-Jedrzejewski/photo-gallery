@@ -1,6 +1,5 @@
 package com.jedrzejewski.photogallery.controller;
 
-import com.jedrzejewski.photogallery.entity.Gallery;
 import com.jedrzejewski.photogallery.model.CurrentUser;
 import com.jedrzejewski.photogallery.service.GalleryService;
 import com.jedrzejewski.photogallery.service.ImageService;
