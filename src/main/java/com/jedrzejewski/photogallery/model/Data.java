@@ -14,7 +14,7 @@ import javax.validation.constraints.NotBlank;
 public class Data {
     @Email
     @NotBlank
-    @UniqueEmailConstraint
+    @UniqueEmailConstraint // custom validator
     private String userEmail;
     @NotBlank
     private String galleryName;
